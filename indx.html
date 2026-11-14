@@ -1,0 +1,92 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AFI RAFI | Gaming & Anime</title>
+<style>
+body{margin:0;background:#080a13;color:#fff;font-family:Arial}
+header{padding:20px;background:#111728;display:flex;justify-content:space-between}
+h1{color:#54e7ff}
+main{max-width:900px;margin:auto;padding:20px}
+section{background:#111728;padding:20px;margin:20px 0;border-radius:15px}
+button{background:linear-gradient(90deg,#54e7ff,#9a72ff);padding:12px;border:0;border-radius:8px;font-weight:bold;cursor:pointer}
+input,select{display:block;width:95%;padding:12px;margin:10px 0;background:#080a13;color:white;border:1px solid #344563;border-radius:8px}
+.card{background:#080a13;padding:15px;margin:10px;border-radius:10px}
+video{max-width:100%}
+</style>
+</head>
+<body>
+<header>
+<h2>AFI RAFI</h2>
+<a href="#join"><button>JOIN NOW</button></a>
+</header>
+<main>
+<section>
+<h1>YOUR WORLD.<br>YOUR PLAY.</h1>
+<p>Gaming • Anime • Social Community</p>
+</section>
+
+<section id="join">
+<h2>Create Profile</h2>
+<form id="signup">
+<input id="name" placeholder="Your Name" required>
+<input id="email" type="email" placeholder="Gmail" required>
+<input id="age" type="number" min="13" placeholder="Age" required>
+<input id="school" placeholder="School Name">
+<select id="privacy">
+<option>Public</option>
+<option>Private</option>
+</select>
+<button>Create Profile</button>
+</form>
+<div id="profile"></div>
+</section>
+
+<section>
+<h2>Creator Studio</h2>
+<input id="title" placeholder="Video Title">
+<input id="file" type="file" accept="video/*">
+<button onclick="preview()">Preview Video</button>
+<div id="video"></div>
+</section>
+
+<section>
+<h2>Featured Gaming & Anime</h2>
+<div class="card">🎮 Free Fire Gaming</div>
+<div class="card">🌌 Anime Videos</div>
+<div class="card">⚔️ Gaming Highlights</div>
+</section>
+
+<section>
+<h2>Discover Friends</h2>
+<input id="search" placeholder="Search Creator">
+<button onclick="alert('Search demo only')">Search</button>
+</section>
+</main>
+
+<script>
+document.getElementById('signup').onsubmit=function(e){
+e.preventDefault();
+let p={
+name:name.value,
+email:email.value,
+age:age.value,
+school:school.value,
+privacy:privacy.value
+};
+localStorage.setItem('AFIRAFI',JSON.stringify(p));
+document.getElementById('profile').innerHTML=
+'<h3>Welcome '+p.name+'</h3><p>'+p.email+'</p>';
+alert('Profile saved!');
+};
+function preview(){
+let f=document.getElementById('file').files[0];
+if(!f)return alert('Select a video');
+document.getElementById('video').innerHTML=
+'<video controls src="'+URL.createObjectURL(f)+'"></video>';
+}
+</script>
+</body>
+</html>
